@@ -19,7 +19,8 @@ ingredients = [
   { name: 'flour', quantity: POUNDS_FLOUR },
   { name: 'eggs', quantity: NUM_EGGS },
   { name: 'cinnamon', quantity: 'some' },
-  { name: 'milk', quantity: 'LITRES_MILK' }
+  { name: 'salt', quantity: 'some' },
+  { name: 'milk', quantity: LITRES_MILK }
 ]
 
 # 2. Printing Out the Ingredients
@@ -70,3 +71,37 @@ steps = [
   { description: "flip the pancake in the air and catch it in the pan" action: "magic-recipe_step"}
   {description: "Cook until the bottom side is lightly brown", action: "generic_recipe_step"}
 ]
+
+#  6. Defining the Steps Actions
+
+def generic_recipe_step
+  puts "On it!"
+  print_progress_bar
+end
+
+def flour_measuring
+  counter = 0
+  while counter < POUNDS_FLOUR
+    counter += 1
+    print "add an pound of flour"
+    print_progress_bar
+  end
+end
+
+def milk_measuring
+  counter = 0
+  while counter < LITRES_MILK
+    counter += 1
+    print "add an litre of milk into the stirring bowl"
+    print_progress_bar
+  end
+end
+
+def break_eggs
+  counter = 0
+  while counter < NUM_EGGS
+    counter += 1
+    print "break egg #{count}"
+    print_progress_bar
+  end
+end
