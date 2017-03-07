@@ -19,5 +19,17 @@ ingredients = [
   { name: 'flour', quantity: POUNDS_FLOUR },
   { name: 'eggs', quantity: NUM_EGGS },
   { name: 'cinnamon', quantity: 'some' },
-  { name: 'milk', quantity: 'LITRES_MILK }
+  { name: 'milk', quantity: 'LITRES_MILK' }
 ]
+
+# 2. Printing Out the Ingredients
+
+
+puts "*    Let's cook an Pancake!    *"
+print_divider
+
+puts "You need the following ingredients:"
+
+ingredients.each do |ingredient|
+  puts "* #{ingredient[:quantity]} #{ingredient[:name]}"
+end
