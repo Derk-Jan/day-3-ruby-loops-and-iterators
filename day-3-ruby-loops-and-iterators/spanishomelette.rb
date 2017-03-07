@@ -8,10 +8,10 @@ def print_progress_bar
   puts "\n"
 end
 
-POUNDS_FLOUR = 4
-NUM_EGGS = 24
+POUNDS_FLOUR = 2
+NUM_EGGS = 12
 # TEASPOONS_CINNAMON = 2
-LITRES_MILK = 12
+LITRES_MILK = 6
 
 #1. Defining the Ingredients
 
@@ -58,17 +58,16 @@ end
 # 4. Defining the Recipe Steps
 
 steps = [
-  { description: "get an huge stirring bowl.I mean HUGE!", action: "get_an_stirring_bowl" },
-  { description: "put the flour in the stirring bowl", action: "flour-in_stirring bowl" },
-  { description: "pour the milk in the stirring bowl", action: "pour_milk" },
-  { description: "Stir into the bowl the flour with milk and some salt", action: "generic_recipe_step" },
-  { description: "Break the eggs", action: "break_eggs" },
-  { description: "pour the eggs in the stirring bowl", action: "generic_recipe_step" },
-  { description: "Stir the eggs together with the other ingredients", action: "generic_recipe_step" },
-  { description: "Break the eggs", action: "break_eggs" },
+  { description: "get an huge stirring bowl.I mean HUGE!", action: "generic_recipe_step"},
+  { description: "put the flour in the stirring bowl", action: "flour_in_stirring_bowl"},
+  { description: "pour the milk in the stirring bowl", action: "pour_milk"},
+  { description: "Stir into the bowl the flour with milk and some salt", action: "generic_recipe_step"},
+  { description: "Break the eggs", action: "break_eggs"},
+  { description: "pour the eggs in the stirring bowl", action: "generic_recipe_step"},
+  { description: "Stir the eggs together with the other ingredients", action: "generic_recipe_step"},
   { description: "Heat the oil in a large frying pan", action: "generic_recipe_step"},
-  { description: "Cook until the pancake is solid and slightly brown", action: "generic_recipe_step" }
-  { description: "flip the pancake in the air and catch it in the pan" action: "magic-recipe_step"}
+  { description: "Cook until the pancake is solid and slightly brown", action: "generic_recipe_step" },
+  { description: "flip the pancake in the air and catch it in the pan", action: "crucial_step"},
   {description: "Cook until the bottom side is lightly brown", action: "generic_recipe_step"}
 ]
 
@@ -79,7 +78,7 @@ def generic_recipe_step
   print_progress_bar
 end
 
-def flour_measuring
+def flour_in_stirring_bowl
   counter = 0
   while counter < POUNDS_FLOUR
     counter += 1
@@ -88,7 +87,7 @@ def flour_measuring
   end
 end
 
-def milk_measuring
+def pour_milk
   counter = 0
   while counter < LITRES_MILK
     counter += 1
@@ -101,9 +100,14 @@ def break_eggs
   counter = 0
   while counter < NUM_EGGS
     counter += 1
-    print "break egg #{count}"
+    print "break egg #{counter}"
     print_progress_bar
   end
+end
+
+def crucial_step
+  puts "..........\n
+  Lets do something magic"
 end
 
 #7. Asking User if Ready for Next Step
@@ -124,9 +128,17 @@ steps.each_with_index do |step, index|
   loop do
     ready = ask_if_ready(step, index)
     break if ready
+if step[:description] == "Cook until the bottom side is lightly brown"
+    puts "OH NO, \n
+    the pancake is on the ground!"
 
-    puts "OK, I will give you some extra time."
+    puts "But no one is noticing. PUT IT BACK!"
+
+
+elsif
+     puts "OK, I will give you some extra time."
     print_progress_bar
+  end
   end
 
   send(step[:action])
